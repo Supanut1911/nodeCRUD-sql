@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <style>
+        .table-wrapper {
+            /* magin-top: 50px; */
+        }
+
+        .player-img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .add-player-form {
+            margin-top: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1"><a href="/">Socka Players</a></span>
+            <a href="/add" class="float-right" title="Add a new Player">Add a player</a>
+        </nav>
+
+        <div class="container">
+            <%if (message) {%>
+            <p class="text-center text-danger"><% message %></p>
+            <% } %>
+
+            <%if (player) {%>
+
+            <form action="" class="add-player-form" method="post" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="first-name">First Name</label>
+                        <input type="text" class="form-control" name="first_name" id="first-name"
+                            value="<%=player.first_name %>" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" class="form-control" name="last_name" id="last-name"
+                            value="<%=player.last_name %>" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="username">UserName</label>
+                        <input type="text" class="form-control" name="username" id="username"
+                            value="<%=player.user_name %>" required disabled title="Username cannot be edited">
+                    </div>
+
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="numer">Number</label>
+                        <input type="number" class="form-control" name="number" placeholder="Number" value="<%=player.number%>" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="position">position</label>
+                        <select name="position" id="position" class="form-control" required>
+                            <option selected><%= player.position%></option>
+                            <option>Goalkeeper</option>
+                            <option>Center Back</option>
+                            <option>Right Back</option>
+                            <option>Left Back</option>
+                            <option>Defensive Midfielder</option>
+                            <option>Attacking Midfielder</option>
+                            <option>Right Wing Forward</option>
+                            <option>Left Wing Forwar</option>
+                            <option>Striker</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-right">Update Player</button>
+                </div>
+
+            </form>
+            <% } else { %>
+            <p class="text-center">Player not found. Go <a href="/add">here</a>to add players.</p>
+            <% } %>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+
+</html>

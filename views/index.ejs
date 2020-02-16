@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <style>
+        .table-wrapper {
+            magin-top: 50px;
+        }
+
+        .player-img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .add-player-form {
+            margin-top: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1"><a href="/">Socka Players</a></span>
+            <a href="/add" class="float-right" title="Add a new Player">Add a player</a>
+        </nav>
+    <div class="table-wrapper">
+        <% if (players.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Number</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Action</th>
+                    
+                    </tr>
+                </thead>
+                <tbody>
+                    <% players.forEach((player, index)=> {%>
+                        <tr>
+                            <th scope="row"><%= player.id %></th>
+                            <td><img src="assets/img/<%= player.image%>" class="rounded-circle player-img" alt=""></td>
+                            <td><%= player.first_name%></td>
+                            <td><%= player.last_name%></td>
+                            <td><%= player.position%></td>
+                            <td><%= player.number%></td>
+                            <td><%= player.user_name%></td>
+                            <td>
+                                <a href="/edit/<%=player.id%>"class="btn btn-sm btn-success">edit</a>
+                                <a href="/delete/<%=player.id %>" class="btn btn-sm btn-danger">delete</a>
+                            </td>
+                        </tr>
+                    <%}) %>
+                </tbody>
+            </table>
+            <% } else { %>
+                <p class="text-center">No player found. Go <a href="/add">here</a>to add players.</p>
+            <% } %>
+    </div>
+
